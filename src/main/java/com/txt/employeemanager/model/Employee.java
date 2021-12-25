@@ -2,6 +2,7 @@ package com.txt.employeemanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class Employee implements Serializable {
@@ -16,19 +17,10 @@ public class Employee implements Serializable {
     private String phone;
     private String imageUrl;
 
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false)
     private String employeeCode;
 
     public Employee() {
-    }
-
-    public Employee(String name, String email, String jobTitle, String phone, String imageUrl, String employeeCode) {
-        this.name = name;
-        this.email = email;
-        this.jobTitle = jobTitle;
-        this.phone = phone;
-        this.imageUrl = imageUrl;
-        this.employeeCode = employeeCode;
     }
 
     public Long getId() {
@@ -97,5 +89,18 @@ public class Employee implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(id, employee.id) && Objects.equals(employeeCode, employee.employeeCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, employeeCode);
     }
 }

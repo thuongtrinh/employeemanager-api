@@ -8,6 +8,7 @@ import com.txt.employeemanager.service.EmployeeService;
 
 import java.util.List;
 
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeResource {
